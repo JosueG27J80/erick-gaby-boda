@@ -1802,10 +1802,26 @@ footer strong{
 </footer>
 
 
+<!-- =========================
+     MÚSICA DE LA INVITACIÓN
+========================= -->
+
+<audio
+    id="musicaBoda"
+    preload="auto"
+    loop>
+
+    <source
+        src="Boda-1.mp3"
+        type="audio/mpeg">
+
+</audio>
+
+
 <script>
 
 /* =========================
-   ABRIR INVITACIÓN
+   ABRIR INVITACIÓN + MÚSICA
 ========================= */
 
 const introPhoto =
@@ -1814,11 +1830,27 @@ const introPhoto =
 const verInvitacion =
     document.getElementById("verInvitacion");
 
+const musicaBoda =
+    document.getElementById("musicaBoda");
+
+musicaBoda.volume = 0.30;
+
 verInvitacion.addEventListener(
     "click",
     function(){
 
         introPhoto.classList.add("hide");
+
+        musicaBoda.currentTime = 0;
+
+        musicaBoda.play().catch(function(error){
+
+            console.log(
+                "No se pudo reproducir la música:",
+                error
+            );
+
+        });
 
         document.body.style.overflowX =
             "hidden";
